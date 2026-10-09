@@ -1,23 +1,53 @@
-import logo from './logo.svg';
+import ReactMarkdown from "react-markdown";
 import './App.css';
 
-function App() {
+const App = () => {
+  const chatmsgs = [
+    {
+      role:"assistant",
+      content:"Hello how may I assist you ?",
+    },
+    {
+      role:"assistant",
+      content:"Please Tell...",
+    },
+    {
+      role:"user",
+      content:"wait",
+    },
+    {
+      role:"assistant",
+      content:"Please explain..",
+    },
+    {
+      role:"user",
+      content:"You're not good",
+    },
+    {
+      role:"assistant",
+      content:"Apologies !!!",
+    },
+  ]
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h4>AI Assistant</h4>
+      <div className="chatModule">
+        <div className="chatWindow">
+        {
+          chatmsgs.map(msg=>(
+            <div className="chatcontentbox">
+              <ReactMarkdown>
+                {msg.content}
+              </ReactMarkdown>
+            </div>        
+          ))
+        }
+        </div>        
+        <div className="chatprompt">
+          <textarea className="querybox" placeholder="Ask me anything !"></textarea>
+          <button className="sendbtn">Send</button>
+        </div>        
+      </div>
     </div>
   );
 }
